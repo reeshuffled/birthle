@@ -1,0 +1,10 @@
+{
+  "name": "birthle",
+  "type": "module",
+  "scripts": {
+    "serve": "npx serve .",
+    "etl:verify": "node scripts/etl.js",
+    "etl:fix":    "node scripts/etl.js --fix",
+    "etl:add":    "node scripts/etl.js --add"
+  }
+}

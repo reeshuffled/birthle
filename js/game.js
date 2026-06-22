@@ -1,117 +1,6 @@
 const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 
-const CELEBRITIES = [
-  // Musicians
-  { name: "Taylor Swift",        birthday: "1989-12-13", wiki: "Taylor_Swift" },
-  { name: "Beyoncé",             birthday: "1981-09-04", wiki: "Beyoncé" },
-  { name: "Lady Gaga",           birthday: "1986-03-28", wiki: "Lady_Gaga" },
-  { name: "Adele",               birthday: "1988-05-05", wiki: "Adele" },
-  { name: "Rihanna",             birthday: "1988-02-20", wiki: "Rihanna" },
-  { name: "Katy Perry",          birthday: "1984-10-25", wiki: "Katy_Perry" },
-  { name: "Ed Sheeran",          birthday: "1991-02-17", wiki: "Ed_Sheeran" },
-  { name: "Drake",               birthday: "1986-10-24", wiki: "Drake_(musician)" },
-  { name: "Justin Bieber",       birthday: "1994-03-01", wiki: "Justin_Bieber" },
-  { name: "Ariana Grande",       birthday: "1993-06-26", wiki: "Ariana_Grande" },
-  { name: "Billie Eilish",       birthday: "2001-12-18", wiki: "Billie_Eilish" },
-  { name: "Harry Styles",        birthday: "1994-02-01", wiki: "Harry_Styles" },
-  { name: "Dua Lipa",            birthday: "1995-08-22", wiki: "Dua_Lipa" },
-  { name: "Bruno Mars",          birthday: "1985-10-08", wiki: "Bruno_Mars" },
-  { name: "Justin Timberlake",   birthday: "1981-01-31", wiki: "Justin_Timberlake" },
-  { name: "Eminem",              birthday: "1972-10-17", wiki: "Eminem" },
-  { name: "Jay-Z",               birthday: "1969-12-04", wiki: "Jay-Z" },
-  { name: "Kanye West",          birthday: "1977-06-08", wiki: "Kanye_West" },
-  { name: "Nicki Minaj",         birthday: "1982-12-08", wiki: "Nicki_Minaj" },
-  { name: "Cardi B",             birthday: "1992-10-11", wiki: "Cardi_B" },
-  { name: "Post Malone",         birthday: "1995-07-04", wiki: "Post_Malone" },
-  { name: "Selena Gomez",        birthday: "1992-07-22", wiki: "Selena_Gomez" },
-  { name: "Madonna",             birthday: "1958-08-16", wiki: "Madonna" },
-  { name: "Michael Jackson",     birthday: "1958-08-29", wiki: "Michael_Jackson" },
-  { name: "Elvis Presley",       birthday: "1935-01-08", wiki: "Elvis_Presley" },
-  { name: "David Bowie",         birthday: "1947-01-08", wiki: "David_Bowie" },
-  { name: "Freddie Mercury",     birthday: "1946-09-05", wiki: "Freddie_Mercury" },
-  { name: "John Lennon",         birthday: "1940-10-09", wiki: "John_Lennon" },
-  { name: "Paul McCartney",      birthday: "1942-06-18", wiki: "Paul_McCartney" },
-  { name: "Mick Jagger",         birthday: "1943-07-26", wiki: "Mick_Jagger" },
-  { name: "Prince",              birthday: "1958-06-07", wiki: "Prince_(musician)" },
-  { name: "Bob Dylan",           birthday: "1941-05-24", wiki: "Bob_Dylan" },
-  { name: "Elton John",          birthday: "1947-03-25", wiki: "Elton_John" },
-  { name: "Céline Dion",         birthday: "1968-03-30", wiki: "Céline_Dion" },
-  { name: "Whitney Houston",     birthday: "1963-08-09", wiki: "Whitney_Houston" },
-  { name: "Mariah Carey",        birthday: "1969-03-27", wiki: "Mariah_Carey" },
-  { name: "Kendrick Lamar",      birthday: "1987-06-17", wiki: "Kendrick_Lamar" },
-  { name: "The Weeknd",          birthday: "1990-02-16", wiki: "The_Weeknd" },
-  { name: "Olivia Rodrigo",      birthday: "2003-02-20", wiki: "Olivia_Rodrigo" },
-  { name: "Bad Bunny",           birthday: "1994-03-10", wiki: "Bad_Bunny" },
-  { name: "Shakira",             birthday: "1977-02-02", wiki: "Shakira" },
-  // Actors
-  { name: "Tom Hanks",           birthday: "1956-07-09", wiki: "Tom_Hanks" },
-  { name: "Meryl Streep",        birthday: "1949-06-22", wiki: "Meryl_Streep" },
-  { name: "Angelina Jolie",      birthday: "1975-06-04", wiki: "Angelina_Jolie" },
-  { name: "Brad Pitt",           birthday: "1963-12-18", wiki: "Brad_Pitt" },
-  { name: "Jennifer Aniston",    birthday: "1969-02-11", wiki: "Jennifer_Aniston" },
-  { name: "Will Smith",          birthday: "1968-09-25", wiki: "Will_Smith" },
-  { name: "Dwayne Johnson",      birthday: "1972-05-02", wiki: "Dwayne_Johnson" },
-  { name: "Robert Downey Jr.",   birthday: "1965-04-04", wiki: "Robert_Downey_Jr." },
-  { name: "Johnny Depp",         birthday: "1963-06-09", wiki: "Johnny_Depp" },
-  { name: "Emma Watson",         birthday: "1990-04-15", wiki: "Emma_Watson" },
-  { name: "Chris Evans",         birthday: "1981-06-13", wiki: "Chris_Evans_(actor)" },
-  { name: "Scarlett Johansson",  birthday: "1984-11-22", wiki: "Scarlett_Johansson" },
-  { name: "Zendaya",             birthday: "1996-09-01", wiki: "Zendaya" },
-  { name: "Leonardo DiCaprio",   birthday: "1974-11-11", wiki: "Leonardo_DiCaprio" },
-  { name: "Julia Roberts",       birthday: "1967-10-28", wiki: "Julia_Roberts" },
-  { name: "Denzel Washington",   birthday: "1954-12-28", wiki: "Denzel_Washington" },
-  { name: "Morgan Freeman",      birthday: "1937-06-01", wiki: "Morgan_Freeman" },
-  { name: "Marilyn Monroe",      birthday: "1926-06-01", wiki: "Marilyn_Monroe" },
-  { name: "Audrey Hepburn",      birthday: "1929-05-04", wiki: "Audrey_Hepburn" },
-  { name: "Ryan Reynolds",       birthday: "1976-10-23", wiki: "Ryan_Reynolds" },
-  { name: "Margot Robbie",       birthday: "1990-07-02", wiki: "Margot_Robbie" },
-  { name: "Jennifer Lawrence",   birthday: "1990-08-15", wiki: "Jennifer_Lawrence" },
-  { name: "Ryan Gosling",        birthday: "1980-11-12", wiki: "Ryan_Gosling" },
-  { name: "Chris Hemsworth",     birthday: "1983-08-11", wiki: "Chris_Hemsworth" },
-  // Athletes
-  { name: "Cristiano Ronaldo",   birthday: "1985-02-05", wiki: "Cristiano_Ronaldo" },
-  { name: "Lionel Messi",        birthday: "1987-06-24", wiki: "Lionel_Messi" },
-  { name: "LeBron James",        birthday: "1984-12-30", wiki: "LeBron_James" },
-  { name: "Michael Jordan",      birthday: "1963-02-17", wiki: "Michael_Jordan" },
-  { name: "Serena Williams",     birthday: "1981-09-26", wiki: "Serena_Williams" },
-  { name: "Tiger Woods",         birthday: "1975-12-30", wiki: "Tiger_Woods" },
-  { name: "Roger Federer",       birthday: "1981-08-08", wiki: "Roger_Federer" },
-  { name: "Usain Bolt",          birthday: "1986-08-21", wiki: "Usain_Bolt" },
-  { name: "Muhammad Ali",        birthday: "1942-01-17", wiki: "Muhammad_Ali" },
-  { name: "Kobe Bryant",         birthday: "1978-08-23", wiki: "Kobe_Bryant" },
-  { name: "Stephen Curry",       birthday: "1988-03-14", wiki: "Stephen_Curry" },
-  { name: "Michael Phelps",      birthday: "1985-06-30", wiki: "Michael_Phelps" },
-  { name: "Tom Brady",           birthday: "1977-08-03", wiki: "Tom_Brady" },
-  { name: "Patrick Mahomes",     birthday: "1995-09-17", wiki: "Patrick_Mahomes" },
-  { name: "Simone Biles",        birthday: "1997-03-14", wiki: "Simone_Biles" },
-  // Leaders / historical
-  { name: "Barack Obama",        birthday: "1961-08-04", wiki: "Barack_Obama" },
-  { name: "Nelson Mandela",      birthday: "1918-07-18", wiki: "Nelson_Mandela" },
-  { name: "Princess Diana",      birthday: "1961-07-01", wiki: "Diana,_Princess_of_Wales" },
-  { name: "Queen Elizabeth II",  birthday: "1926-04-21", wiki: "Elizabeth_II" },
-  { name: "Winston Churchill",   birthday: "1874-11-30", wiki: "Winston_Churchill" },
-  { name: "Martin Luther King",  birthday: "1929-01-15", wiki: "Martin_Luther_King_Jr." },
-  { name: "Mahatma Gandhi",      birthday: "1869-10-02", wiki: "Mahatma_Gandhi" },
-  { name: "Napoleon Bonaparte",  birthday: "1769-08-15", wiki: "Napoleon" },
-  { name: "Abraham Lincoln",     birthday: "1809-02-12", wiki: "Abraham_Lincoln" },
-  { name: "George Washington",   birthday: "1732-02-22", wiki: "George_Washington" },
-  { name: "William Shakespeare", birthday: "1564-04-23", wiki: "William_Shakespeare" },
-  { name: "Leonardo da Vinci",   birthday: "1452-04-15", wiki: "Leonardo_da_Vinci" },
-  { name: "Albert Einstein",     birthday: "1879-03-14", wiki: "Albert_Einstein" },
-  { name: "Isaac Newton",        birthday: "1643-01-04", wiki: "Isaac_Newton" },
-  { name: "Charles Darwin",      birthday: "1809-02-12", wiki: "Charles_Darwin" },
-  { name: "Jane Austen",         birthday: "1775-12-16", wiki: "Jane_Austen" },
-  { name: "Charles Dickens",     birthday: "1812-02-07", wiki: "Charles_Dickens" },
-  // Tech / business
-  { name: "Elon Musk",           birthday: "1971-06-28", wiki: "Elon_Musk" },
-  { name: "Jeff Bezos",          birthday: "1964-01-12", wiki: "Jeff_Bezos" },
-  { name: "Bill Gates",          birthday: "1955-10-28", wiki: "Bill_Gates" },
-  { name: "Steve Jobs",          birthday: "1955-02-24", wiki: "Steve_Jobs" },
-  { name: "Mark Zuckerberg",     birthday: "1984-05-14", wiki: "Mark_Zuckerberg" },
-  { name: "Warren Buffett",      birthday: "1930-08-30", wiki: "Warren_Buffett" },
-  { name: "Oprah Winfrey",       birthday: "1954-01-29", wiki: "Oprah_Winfrey" },
-  { name: "Kim Kardashian",      birthday: "1980-10-21", wiki: "Kim_Kardashian" },
-];
+let CELEBRITIES = [];
 
 // ── Build day/year datalists ─────────────────────────────────────
 (function () {
@@ -146,18 +35,53 @@ function getZodiac(month, day) {
   return { sym: '♓', name: 'Pisces' };
 }
 
-// ── Game state ───────────────────────────────────────────────────
-let celeb, answer, guesses = [], gameOver = false;
+// ── Storage ──────────────────────────────────────────────────────
+const STORAGE_STATS   = 'birthle_stats';
+const STORAGE_HISTORY = 'birthle_history';
 
-function init() {
-  const dayNum = Math.floor(Date.now() / 86400000);
+function defaultStats() {
+  return { played: 0, won: 0, currentStreak: 0, maxStreak: 0, distribution: {"1":0,"2":0,"3":0,"4":0,"5":0,"6":0} };
+}
+
+function loadStats() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_STATS)) || defaultStats(); }
+  catch { return defaultStats(); }
+}
+
+function saveStats(s) { localStorage.setItem(STORAGE_STATS, JSON.stringify(s)); }
+
+function loadHistory() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_HISTORY)) || {}; }
+  catch { return {}; }
+}
+
+function saveHistory(h) { localStorage.setItem(STORAGE_HISTORY, JSON.stringify(h)); }
+
+// ── Game state ───────────────────────────────────────────────────
+let celeb, answer, guesses = [], gameOver = false, dayNum;
+
+async function init() {
+  CELEBRITIES = await fetch('data/celebrities.json').then(r => r.json());
+
+  dayNum = Math.floor(Date.now() / 86400000);
   celeb  = CELEBRITIES[dayNum % CELEBRITIES.length];
   const [y, m, d] = celeb.birthday.split('-').map(Number);
   answer = { year: y, month: m, day: d };
 
   document.getElementById('celeb-name').textContent = celeb.name;
   fetchImage();
-  renderGrid();
+
+  const history = loadHistory();
+  const todayRecord = history[dayNum];
+  if (todayRecord) {
+    guesses  = todayRecord.guessData;
+    gameOver = true;
+    renderGrid();
+    document.getElementById('input-area').style.display = 'none';
+    showResult(todayRecord.won);
+  } else {
+    renderGrid();
+  }
 }
 
 async function fetchImage() {
@@ -213,7 +137,27 @@ function submitGuess() {
   guesses.push({ month, day, year });
 
   const won = month === answer.month && day === answer.day && year === answer.year;
-  if (won || guesses.length >= 6) gameOver = true;
+  if (won || guesses.length >= 6) {
+    gameOver = true;
+
+    const history = loadHistory();
+    history[dayNum] = { celebName: celeb.name, won, numGuesses: guesses.length, guessData: guesses, answer };
+    saveHistory(history);
+
+    const stats = loadStats();
+    stats.played++;
+    if (won) {
+      stats.won++;
+      const key = String(guesses.length);
+      stats.distribution[key] = (stats.distribution[key] || 0) + 1;
+      const yesterday = history[dayNum - 1];
+      stats.currentStreak = (yesterday && yesterday.won) ? stats.currentStreak + 1 : 1;
+      stats.maxStreak = Math.max(stats.maxStreak, stats.currentStreak);
+    } else {
+      stats.currentStreak = 0;
+    }
+    saveStats(stats);
+  }
 
   renderGrid();
 
@@ -295,6 +239,26 @@ function makeCell(label, value, result) {
   return c;
 }
 
+// ── Countdown ────────────────────────────────────────────────────
+let countdownInterval = null;
+
+function startCountdown() {
+  if (countdownInterval) clearInterval(countdownInterval);
+  tickCountdown();
+  countdownInterval = setInterval(tickCountdown, 1000);
+}
+
+function tickCountdown() {
+  const el = document.getElementById('countdown-time');
+  if (!el) { clearInterval(countdownInterval); return; }
+  const ms   = (Math.floor(Date.now() / 86400000) + 1) * 86400000 - Date.now();
+  const h    = Math.floor(ms / 3600000);
+  const m    = Math.floor((ms % 3600000) / 60000);
+  const s    = Math.floor((ms % 60000) / 1000);
+  el.textContent = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+}
+
+// ── Result card ──────────────────────────────────────────────────
 function showResult(won) {
   const wrap    = document.getElementById('result-wrap');
   const card    = document.getElementById('result-card');
@@ -307,6 +271,51 @@ function showResult(won) {
   answer2.textContent =
     `${celeb.name}'s birthday: ${MONTHS[answer.month-1]} ${answer.day}, ${answer.year}  ${z.sym} ${z.name}`;
 
+  card.querySelectorAll('.result-stats, .result-dist, .result-countdown, .share-btn').forEach(el => el.remove());
+
+  // Stats row
+  const stats   = loadStats();
+  const winPct  = stats.played ? Math.round((stats.won / stats.played) * 100) : 0;
+  const statsEl = document.createElement('div');
+  statsEl.className = 'result-stats';
+  statsEl.innerHTML = `
+    <div class="stat-box"><div class="stat-num">${stats.played}</div><div class="stat-lbl">Played</div></div>
+    <div class="stat-box"><div class="stat-num">${winPct}</div><div class="stat-lbl">Win %</div></div>
+    <div class="stat-box"><div class="stat-num">${stats.currentStreak}</div><div class="stat-lbl">Streak</div></div>
+    <div class="stat-box"><div class="stat-num">${stats.maxStreak}</div><div class="stat-lbl">Best</div></div>
+  `;
+  card.appendChild(statsEl);
+
+  // Guess distribution
+  const distEl = document.createElement('div');
+  distEl.className = 'result-dist';
+  const maxVal = Math.max(1, ...Object.values(stats.distribution).map(Number));
+  for (let i = 1; i <= 6; i++) {
+    const val = Number(stats.distribution[String(i)] || 0);
+    const pct = Math.round((val / maxVal) * 100);
+    const highlight = won && guesses.length === i;
+    const row = document.createElement('div');
+    row.className = 'dist-row';
+    row.innerHTML = `
+      <span class="dist-label">${i}</span>
+      <div class="dist-bar-wrap">
+        <div class="dist-bar${highlight ? ' dist-bar-current' : ''}" style="width:${Math.max(pct, 7)}%">
+          <span class="dist-count">${val}</span>
+        </div>
+      </div>
+    `;
+    distEl.appendChild(row);
+  }
+  card.appendChild(distEl);
+
+  // Countdown
+  const countdownEl = document.createElement('div');
+  countdownEl.className = 'result-countdown';
+  countdownEl.innerHTML = `<span class="countdown-lbl">Next Birthle in</span><span class="countdown-time" id="countdown-time"></span>`;
+  card.appendChild(countdownEl);
+  startCountdown();
+
+  // Share button
   const shareBtn = document.createElement('button');
   shareBtn.className = 'share-btn';
   shareBtn.textContent = 'Share';
