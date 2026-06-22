@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Birthle</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <header>
+    <h1>Birthle</h1>
+    <div class="subtitle">Guess the birthday · 6 tries</div>
+    <button class="help-btn" id="help-btn" aria-label="How to play">?</button>
+  </header>
+
+  <div class="modal-backdrop" id="modal-backdrop">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button class="modal-close" id="modal-close" aria-label="Close">✕</button>
+      <h2 id="modal-title">How to Play</h2>
+      <p>Guess the birthday of the featured celebrity in <strong>6 tries</strong>.</p>
+      <div class="modal-section">
+        <h3>After each guess</h3>
+        <div class="modal-row"><span class="ex-cell correct">Sep</span><span>Exact match</span></div>
+        <div class="modal-row"><span class="ex-cell">Mar ▶</span><span>Actual is <strong>later</strong> in time</span>
+        </div>
+        <div class="modal-row"><span class="ex-cell">Nov ◀</span><span>Actual is <strong>earlier</strong> in time</span>
+        </div>
+      </div>
+      <div class="modal-section">
+        <h3>Zodiac sign</h3>
+        <div class="modal-row"><span class="ex-zodiac zc-correct">♎</span><span>Your guess shares the same sign</span>
+        </div>
+        <div class="modal-row"><span class="ex-zodiac zc-wrong">♓</span><span>Different sign</span></div>
+      </div>
+      <p class="modal-note">A new celebrity every day.</p>
+    </div>
+  </div>
+
+  <div class="celebrity-card">
+    <div class="photo-ring">
+      <img id="celeb-photo" alt="Celebrity photo">
+      <span id="photo-icon">👤</span>
+    </div>
+    <div class="celeb-name" id="celeb-name">Loading…</div>
+  </div>
+
+  <div class="col-headers" id="col-headers">
+    <div class="col-hdr">Sign</div>
+    <div class="col-hdr">Month</div>
+    <div class="col-hdr">Day</div>
+    <div class="col-hdr">Year</div>
+  </div>
+
+  <div class="guesses" id="guesses"></div>
+
+  <div class="input-area" id="input-area">
+    <div class="inputs-row">
+      <div class="inp-grp">
+        <label for="m-inp">Month</label>
+        <input id="m-inp" type="text" list="month-dl" placeholder="January" autocomplete="off">
+        <datalist id="month-dl">
+          <option value="January">
+          <option value="February">
+          <option value="March">
+          <option value="April">
+          <option value="May">
+          <option value="June">
+          <option value="July">
+          <option value="August">
+          <option value="September">
+          <option value="October">
+          <option value="November">
+          <option value="December">
+        </datalist>
+      </div>
+      <div class="inp-grp">
+        <label for="d-inp">Day</label>
+        <input id="d-inp" type="text" list="day-dl" placeholder="1 – 31" autocomplete="off">
+        <datalist id="day-dl"></datalist>
+      </div>
+      <div class="inp-grp">
+        <label for="y-inp">Year</label>
+        <input id="y-inp" type="text" list="year-dl" placeholder="e.g. 1989" autocomplete="off">
+        <datalist id="year-dl"></datalist>
+      </div>
+    </div>
+    <div class="err-msg" id="err"></div>
+    <button class="guess-btn" id="guess-btn">Guess</button>
+  </div>
+
+  <div class="result-wrap" id="result-wrap">
+    <div class="result-card" id="result-card">
+      <div class="result-title" id="result-title"></div>
+      <div class="result-answer" id="result-answer"></div>
+    </div>
+  </div>
+
+  <script src="js/game.js"></script>
+</body>
+
+</html>
