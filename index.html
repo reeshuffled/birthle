@@ -11,10 +11,24 @@
 <body>
 
   <header>
+    <button class="archive-btn" id="archive-btn" aria-label="Archive">📅</button>
     <h1>Birthle</h1>
     <div class="subtitle">Guess the birthday · 6 tries</div>
     <button class="help-btn" id="help-btn" aria-label="How to play">?</button>
   </header>
+
+  <div class="archive-banner" id="archive-banner">
+    <span>Viewing past puzzle</span>
+    <button id="back-today-btn">Back to Today</button>
+  </div>
+
+  <div class="modal-backdrop" id="archive-backdrop">
+    <div class="modal archive-modal" role="dialog" aria-modal="true" aria-labelledby="archive-title">
+      <button class="modal-close" id="archive-close" aria-label="Close">✕</button>
+      <h2 id="archive-title">Archive</h2>
+      <div class="archive-list" id="archive-list"></div>
+    </div>
+  </div>
 
   <div class="modal-backdrop" id="modal-backdrop">
     <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">

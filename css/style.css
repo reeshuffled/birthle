@@ -340,6 +340,125 @@ h1 {
   text-align: center;
 }
 
+/* ── Archive button ── */
+.archive-btn {
+  position: absolute;
+  top: 18px;
+  left: 16px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.95rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.archive-btn:hover { border-color: var(--text); color: var(--text); }
+
+/* ── Archive banner ── */
+.archive-banner {
+  display: none;
+  width: 100%;
+  max-width: 500px;
+  background: var(--hint-color);
+  color: #000;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding: 8px 16px;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 8px;
+  margin-bottom: 14px;
+}
+
+.archive-banner.show { display: flex; }
+
+.archive-banner button {
+  background: rgba(0,0,0,0.15);
+  border: none;
+  border-radius: 6px;
+  color: #000;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.archive-banner button:hover { background: rgba(0,0,0,0.25); }
+
+/* ── Archive modal ── */
+.archive-modal {
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 16px;
+}
+
+.archive-list {
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 4px;
+  padding-right: 4px;
+}
+
+.archive-item {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: var(--input-bg);
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.15s, background 0.15s;
+  color: var(--text);
+  font-family: inherit;
+}
+
+.archive-item:hover { border-color: var(--muted); }
+
+.archive-item.archive-won  { border-color: var(--correct); }
+.archive-item.archive-lost { border-color: var(--wrong); }
+
+.archive-celeb {
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.archive-meta {
+  font-size: 0.72rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.archive-status {
+  font-size: 0.85rem;
+  font-weight: 800;
+  width: 18px;
+  text-align: center;
+}
+
+.archive-item.archive-won  .archive-status { color: var(--correct); }
+.archive-item.archive-lost .archive-status { color: var(--wrong); }
+.archive-unplayed { color: var(--muted); }
+
 /* ── Help button ── */
 .help-btn {
   position: absolute;

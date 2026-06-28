@@ -59,26 +59,46 @@ function saveHistory(h) { localStorage.setItem(STORAGE_HISTORY, JSON.stringify(h
 
 // ── Game state ───────────────────────────────────────────────────
 let celeb, answer, guesses = [], gameOver = false, dayNum;
+const todayDayNum = Math.floor(Date.now() / 86400000);
 
 async function init() {
   CELEBRITIES = await fetch('data/celebrities.json').then(r => r.json());
+  loadPuzzle(todayDayNum);
+}
 
-  dayNum = Math.floor(Date.now() / 86400000);
+function loadPuzzle(targetDayNum) {
+  dayNum   = targetDayNum;
+  guesses  = [];
+  gameOver = false;
+
   celeb  = CELEBRITIES[dayNum % CELEBRITIES.length];
   const [y, m, d] = celeb.birthday.split('-').map(Number);
   answer = { year: y, month: m, day: d };
 
   document.getElementById('celeb-name').textContent = celeb.name;
+
+  const img = document.getElementById('celeb-photo');
+  img.src = '';
+  img.classList.remove('loaded');
+  document.getElementById('photo-icon').classList.remove('hidden');
   fetchImage();
 
+  document.getElementById('archive-banner').classList.toggle('show', dayNum !== todayDayNum);
+  document.getElementById('col-headers').classList.remove('visible');
+  document.getElementById('result-wrap').classList.remove('show');
+  document.getElementById('input-area').style.display = '';
+  document.getElementById('err').textContent = '';
+  clearInputs();
+  if (countdownInterval) { clearInterval(countdownInterval); countdownInterval = null; }
+
   const history = loadHistory();
-  const todayRecord = history[dayNum];
-  if (todayRecord) {
-    guesses  = todayRecord.guessData;
+  const record  = history[dayNum];
+  if (record) {
+    guesses  = record.guessData;
     gameOver = true;
     renderGrid();
     document.getElementById('input-area').style.display = 'none';
-    showResult(todayRecord.won);
+    showResult(record.won);
   } else {
     renderGrid();
   }
@@ -351,17 +371,62 @@ function buildShareText(won) {
   return lines.join('\n');
 }
 
-// ── Modal ────────────────────────────────────────────────────────
+// ── Help modal ───────────────────────────────────────────────────
 const backdrop = document.getElementById('modal-backdrop');
 document.getElementById('help-btn').addEventListener('click', () => backdrop.classList.add('open'));
 document.getElementById('modal-close').addEventListener('click', () => backdrop.classList.remove('open'));
 backdrop.addEventListener('click', e => { if (e.target === backdrop) backdrop.classList.remove('open'); });
 
+// ── Archive modal ────────────────────────────────────────────────
+const archiveBackdrop = document.getElementById('archive-backdrop');
+
+function openArchive() {
+  const history = loadHistory();
+  const list    = document.getElementById('archive-list');
+  list.innerHTML = '';
+
+  const count = Math.min(todayDayNum, 60);
+  for (let n = todayDayNum - 1; n >= todayDayNum - count; n--) {
+    const c = CELEBRITIES[n % CELEBRITIES.length];
+    const record    = history[n];
+    const daysAgo   = todayDayNum - n;
+    const dayLabel  = daysAgo === 1 ? 'Yesterday' : `${daysAgo} days ago`;
+    let statusClass = '';
+    let statusIcon  = '';
+    if (record) {
+      statusClass = record.won ? 'archive-won' : 'archive-lost';
+      statusIcon  = record.won ? '✓' : '✗';
+    }
+
+    const item = document.createElement('button');
+    item.className = `archive-item${statusClass ? ' ' + statusClass : ''}`;
+    item.innerHTML = `
+      <span class="archive-celeb">${c.name}</span>
+      <span class="archive-meta">${dayLabel}</span>
+      ${statusIcon ? `<span class="archive-status">${statusIcon}</span>` : '<span class="archive-status archive-unplayed">—</span>'}
+    `;
+    item.addEventListener('click', () => {
+      archiveBackdrop.classList.remove('open');
+      loadPuzzle(n);
+    });
+    list.appendChild(item);
+  }
+
+  archiveBackdrop.classList.add('open');
+}
+
+document.getElementById('archive-btn').addEventListener('click', openArchive);
+document.getElementById('archive-close').addEventListener('click', () => archiveBackdrop.classList.remove('open'));
+archiveBackdrop.addEventListener('click', e => { if (e.target === archiveBackdrop) archiveBackdrop.classList.remove('open'); });
+document.getElementById('back-today-btn').addEventListener('click', () => loadPuzzle(todayDayNum));
+
 // ── Events ───────────────────────────────────────────────────────
 document.getElementById('guess-btn').addEventListener('click', submitGuess);
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') backdrop.classList.remove('open');
-  else if (e.key === 'Enter') submitGuess();
+  if (e.key === 'Escape') {
+    backdrop.classList.remove('open');
+    archiveBackdrop.classList.remove('open');
+  } else if (e.key === 'Enter') submitGuess();
 });
 
 init();
